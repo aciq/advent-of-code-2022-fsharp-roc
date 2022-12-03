@@ -7,7 +7,7 @@ let watcher = new FileSystemWatcher(".","*.roc",EnableRaisingEvents=true, Includ
 let p() = 
     new Process(StartInfo=ProcessStartInfo(
             fileName="roc",
-            arguments="check day01/main.roc",
+            arguments="check day02/main.roc",
             WorkingDirectory= __SOURCE_DIRECTORY__ ,
             RedirectStandardInput=true
         )
