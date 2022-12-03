@@ -9,6 +9,10 @@ app "main"
     ]
     provides [main] to pf
 
+
+State : { curr: I32, elves: List I32 }
+
+foldLine : State, Str -> State
 foldLine = \acc, line -> 
     when line is 
         "" -> { acc & curr : 0, elves : List.append acc.elves acc.curr}
@@ -16,6 +20,7 @@ foldLine = \acc, line ->
             cals = line |> Str.toI32 |> Result.withDefault 0
             { acc & curr : acc.curr + cals}
 
+innerTask : Task {} [Err]
 innerTask = 
     inputString <- "input" |> Path.fromStr |> File.readUtf8 |> Task.await
   
