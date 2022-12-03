@@ -47,6 +47,6 @@ let markdown =
     )
 
 File.WriteAllText(
-    Path.Combine(dayDir.FullName,"instructions.md"),
+    Path.Combine(dayDir.FullName,$"instructions-%02i{day}.md"),
     markdown
     )
