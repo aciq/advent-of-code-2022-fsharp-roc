@@ -37,13 +37,11 @@ let parseInstructions (lines: string seq) =
     |> Seq.map (fun line -> Regex.Match(line, "move (\\d+) from (\\d+) to (\\d+)") )
     |> Seq.where (fun f -> f.Success)
     |> Seq.map (fun f -> f.Groups |> Seq.skip 1 |> Seq.map (fun g -> int g.Value) |> Seq.toArray)
-    |> Seq.toArray
-
 
 let lines = __SOURCE_DIRECTORY__ + "/input" |> File.ReadLines
 
 let crates = lines |> parseCrates
-let instructions = lines |> parseInstructions |> Seq.toArray
+let instructions = lines |> parseInstructions
 
 let result = 
     instructions
@@ -51,7 +49,7 @@ let result =
         crates |> moveToCrate inst[0] (inst[1]-1) (inst[2]-1)
     ) crates
     |> Seq.map (List.tryHead)
-    |> Seq.choose id
+    |> Seq.choose id // remove empty crates
     |> (Seq.toArray >> System.String)
     
 result
