@@ -1,2 +1,10 @@
-/session-cookie
-/2023/session.txt
+**/session.txt
+
+/2023/**/*.cmx
+/2023/**/*.cmi
+/2023/**/*.ml
+/2023/**/*.o
+/2023/**/main
+
+
+
