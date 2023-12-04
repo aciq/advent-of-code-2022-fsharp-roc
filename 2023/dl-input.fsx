@@ -20,32 +20,4 @@ if not dayDir.Exists then dayDir.Create()
 let input = Http.RequestString(url + "/input", cookies = [ sessionCookie ])
 
 // write input
-File.WriteAllText(
-    Path.Combine(dayDir.FullName,"input"),
-    input
-)
-
-// write instructions
-
-let instructions = 
-    Http.RequestString(url, cookies = [ sessionCookie ])
-
-let content = 
-    instructions
-    |> HtmlDocument.Parse
-    |> HtmlDocument.body
-    |> (fun nodes -> 
-        HtmlNode.cssSelect nodes "article" )
-    |> List.map (fun f -> f.ToString())
-    |> String.concat "\n"
-
-let markdown = 
-    Http.RequestString(
-        "https://tools.atatus.com/tools/html-to-markdown",
-        body = FormValues [ "html", content]
-    )
-
-File.WriteAllText(
-    Path.Combine(dayDir.FullName,$"instructions-%02i{day}.md"),
-    markdown
-    )
+File.WriteAllText(Path.Combine(dayDir.FullName,"input"), input)

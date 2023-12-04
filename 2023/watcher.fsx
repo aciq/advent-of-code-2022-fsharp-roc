@@ -9,7 +9,7 @@ open System.Text
 
 Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
 
-let projDir = "day01"
+let projDir = "day02"
 
 let watcher = new FileSystemWatcher(projDir,"*.fst",EnableRaisingEvents=true, IncludeSubdirectories=true)
 let onChanged (_:WaitForChangedResult) =
